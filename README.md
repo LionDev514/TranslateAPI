@@ -9,6 +9,7 @@ enter on this [page](https://tech.yandex.com/keys/get/?service=trnsl) (important
 ```java
 import cn.nukkit.plugin.*;
 import lion.translateapi;
+//I don't have to :v
 import lion.translateapi.errors.*;
 public class example extends PluginBase{
     TranslateAPI api;
