@@ -9,8 +9,10 @@ enter on this [page](https://tech.yandex.com/keys/get/?service=trnsl) (important
 ```java
 import cn.nukkit.plugin.*;
 import lion.translateapi;
+
 //I don't have to :v
 import lion.translateapi.errors.*;
+
 public class example extends PluginBase{
     TranslateAPI api;
     @Override
@@ -24,22 +26,22 @@ public class example extends PluginBase{
             sender.sendMessage(TranslateAuto(args[0],args[1]));
         break;
     }
-    void TranslateAuto(String text,Lang lang){
+    string TranslateAuto(String text,Lang lang){
         try{
         //get auto the lang of the string ,return string
-            this.api.translateAuto(lang,text);
+            return this.api.translateAuto(lang,text);
         }
         catch(IOExeption e){
-            //code here :v
+            return e.toString();
         }
     }
     void Translate(String text,Lang lang,Lang to){
         try{
         //return string
-            this.api.translate(lang,to,text);
+            return this.api.translate(lang,to,text);
         }
         catch(IOExeption e){
-            //code here :v
+            return e.toString();
         }
     }
 }
