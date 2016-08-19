@@ -18,6 +18,12 @@ public class example extends PluginBase{
         this.api=new TranslateAPI("yourKey");
         this.getLogger.info("example loaded!")
     }
+    @Override
+    boolean onCommand(CommandSender sender, Command command, String label, String[] args){
+        case "translate":
+            sender.sendMessage(TranslateAuto(args[0],args[1]));
+        break;
+    }
     void TranslateAuto(String text,Lang lang){
         try{
         //get auto the lang of the string ,return string
