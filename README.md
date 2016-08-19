@@ -1,7 +1,7 @@
 # TranslateAPI
-for nukkit :)
+for Nukkit :)
 
-## How-To
+## How To
 
 #### Get Api key:
 enter on this [page](https://tech.yandex.com/keys/get/?service=trnsl) (important: register before :v)
