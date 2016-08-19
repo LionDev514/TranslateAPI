@@ -34,8 +34,9 @@ public class example extends PluginBase{
         catch(IOExeption e){
             return e.toString();
         }
+        return null;
     }
-    void Translate(String text,Lang lang,Lang to){
+    String Translate(String text,Lang lang,Lang to){
         try{
         //return string
             return this.api.translate(lang,to,text);
@@ -43,6 +44,7 @@ public class example extends PluginBase{
         catch(IOExeption e){
             return e.toString();
         }
+        return null;
     }
 }
 ```
