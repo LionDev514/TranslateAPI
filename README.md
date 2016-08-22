@@ -1,15 +1,17 @@
 # TranslateAPI
-for nukkit :)
+for Nukkit :-)
 
-## How-To
+## How To
 
 #### Get Api key:
-enter on this [page](https://tech.yandex.com/keys/get/?service=trnsl) (important: register before :v)
+enter on this [page](https://tech.yandex.com/keys/get/?service=trnsl)
 #### Use Api:
+>Example Plugin:
+
 ```java
 import cn.nukkit.plugin.*;
-import lion.translateapi;
-import lion.translateapi.errors.*;
+import lion.translateapi.*;
+
 public class example extends PluginBase{
     TranslateAPI api;
     @Override
@@ -17,23 +19,31 @@ public class example extends PluginBase{
         this.api=new TranslateAPI("yourKey");
         this.getLogger.info("example loaded!")
     }
-    void TranslateAuto(String text,Lang lang){
+    @Override
+    boolean onCommand(CommandSender sender, Command command, String label, String[] args){
+        case "translate":
+            sender.sendMessage(TranslateAuto(args[0],args[1]));
+        break;
+    }
+    String TranslateAuto(String text,Lang lang){
         try{
         //get auto the lang of the string ,return string
-            this.api.translateAuto(lang,text);
+            return this.api.translateAuto(lang,text);
         }
         catch(IOExeption e){
-            //code here :v
+            return e.toString();
         }
+        return null;
     }
-    void Translate(String text,Lang lang,Lang to){
+    String Translate(String text,Lang lang,Lang to){
         try{
         //return string
-            this.api.translate(lang,to,text);
+            return this.api.translate(lang,to,text);
         }
         catch(IOExeption e){
-            //code here :v
+            return e.toString();
         }
+        return null;
     }
 }
 ```
