@@ -1,17 +1,16 @@
 # TranslateAPI
-for Nukkit :)
+for Nukkit :-)
 
 ## How To
 
 #### Get Api key:
-enter on this [page](https://tech.yandex.com/keys/get/?service=trnsl) (important: register before :v)
+enter on this [page](https://tech.yandex.com/keys/get/?service=trnsl)
 #### Use Api:
+>Example Plugin:
+
 ```java
 import cn.nukkit.plugin.*;
-import lion.translateapi;
-
-//I don't have to :v
-import lion.translateapi.errors.*;
+import lion.translateapi.*;
 
 public class example extends PluginBase{
     TranslateAPI api;
@@ -26,7 +25,7 @@ public class example extends PluginBase{
             sender.sendMessage(TranslateAuto(args[0],args[1]));
         break;
     }
-    string TranslateAuto(String text,Lang lang){
+    String TranslateAuto(String text,Lang lang){
         try{
         //get auto the lang of the string ,return string
             return this.api.translateAuto(lang,text);
