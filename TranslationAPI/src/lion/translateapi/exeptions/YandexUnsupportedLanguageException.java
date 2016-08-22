@@ -1,8 +1,5 @@
 package lion.translateapi.exeptions;
 
-/**
- * Created by Angel on 17/08/2016.
- */
 public class YandexUnsupportedLanguageException extends YandexException {
     private static final long serialVersionUID = 1L;
 

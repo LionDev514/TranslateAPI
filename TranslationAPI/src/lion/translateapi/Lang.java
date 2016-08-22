@@ -2,9 +2,6 @@ package lion.translateapi;
 
 import lion.translateapi.exeptions.YandexUnsupportedLanguageException;
 
-/**
- * Created by Angel on 17/08/2016.
- */
 public enum  Lang {
         ENGLISH("English", "en"),
         RUSSIAN("Russian", "ru"),
