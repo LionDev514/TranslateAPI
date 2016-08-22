@@ -1,4 +1,4 @@
-package lion.translateapi.errors;
+package lion.translateapi.exeptions;
 
 public class YandexCharLimitExceededException extends YandexException {
     private static final long serialVersionUID = 1L;

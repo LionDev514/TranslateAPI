@@ -1,10 +1,7 @@
 package lion.translateapi;
 
-import lion.translateapi.errors.*;
+import lion.translateapi.exeptions.YandexUnsupportedLanguageException;
 
-/**
- * Created by Angel on 17/08/2016.
- */
 public enum  Lang {
         ENGLISH("English", "en"),
         RUSSIAN("Russian", "ru"),
@@ -17,12 +14,10 @@ public enum  Lang {
         DANISH("Danish", "da"),
         PORTUGUESE("Portuguese", "pt"),
         HEBREW("Hebrew", "he"),
-        ARABIC("Arabic", "ar"),
         FINNISH("Finnish", "fi"),
         GREEK("Greek", "el"),
         ICELANDIC("Icelandic", "is"),
         MALTESE("Maltese", "mt"),
-        TURKISH("Turkish", "tr"),
         CROATIAN("Croatian", "hr"),
         CHINESE("Chinese", "zh"),
         THAI("Thai", "th"),
@@ -31,7 +26,6 @@ public enum  Lang {
         HUNAGRIAN("Hungarian", "hu"),
         ESTONIAN("Estonian", "et"),
         LATVIAN("Latvian", "lv"),
-        ALBANIAN("Albanian", "sq"),
         ROMANIAN("Romanian", "ro"),
         CZECH("Czech", "cs"),
         SLOVAK("Slovak", "sk"),
@@ -40,12 +34,27 @@ public enum  Lang {
         MACEDONIAN("Macedonian", "mk"),
         BULGARIAN("Bulgarian", "bg"),
         UKRANIAN("Ukrainian", "uk"),
-        ByeLorussian("ByeLorussion", "be"),
-        AZERBAIJANI("Azerbaijani", "az"),
-        ARMENIAN("Armenian", "hy"),
         GEORGIAN("Georgian", "ka"),
         VIETNAMESE("Vietnamese", "vi"),
-        INDONESIAN("Indonesian", "id");
+        INDONESIAN("Indonesian", "id"),
+        AFRIKAANS("Afrikaans","ar"),
+        ALBANIAN("Albanian", "sq"),
+        ARABIC("Arabic", "ar"),
+        ARMENIAN("Armenian", "hy"),
+        AZERBAIJANI("Azerbaijani","az"),
+        BASHKIR("Bashkir","ba"),
+        BASQUE("Basque","eu"),
+        BELARUSIAN("Belarusian","be"),
+        BENGALI("Bengali","bn"),
+        BOSNIAN("Bosnian","bs"),
+        CATALAN("Catalan","ca"),
+        CEBUANO("Cebuano","ceb"),
+        ELVIShSINDARIN("Elvish(Sindarin)","snj"),
+        ESPERANTO("Esperanto","eo"),
+        GALICIAN("Galician","gl"),
+        GUJARATI("Gujarati","gu"),
+        JAPANESE("Japanese","ja"),
+        TURKISH("Turkish","tr");
         private String name;
         private String shortName;
 

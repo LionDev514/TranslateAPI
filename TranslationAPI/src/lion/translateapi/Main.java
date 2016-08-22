@@ -1,29 +1,21 @@
 package lion.translateapi;
 
-import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
-import cn.nukkit.event.EventHandler;
-import cn.nukkit.event.EventPriority;
-import cn.nukkit.event.Listener;
-import cn.nukkit.event.player.PlayerChatEvent;
-import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.TextFormat;
-import lion.translateapi.errors.YandexUnsupportedLanguageException;
 
 import java.io.IOException;
-import java.util.*;
 
 
 public class Main extends PluginBase {
     @Override
     public void onEnable(){
-        this.getLogger().notice(TextFormat.GREEN+"Loaded Yandex Translation Api for Nukkit by: _Lion");
+        this.getLogger().notice(TextFormat.GREEN+"Loaded Yandex Translate Api for Nukkit by: _Lion");
     }
     @Override
     public void onDisable(){
-        this.getLogger().notice(TextFormat.RED+"Disabled Yandex Translation Api for Nukkit by: _Lion");
+        this.getLogger().notice(TextFormat.RED+"Disabled Yandex Translate Api for Nukkit by: _Lion");
     }
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args){
@@ -36,7 +28,7 @@ public class Main extends PluginBase {
                 String msg=String.join(" ",args);
                 msg=msg.replace(args[0],"");
                 try {
-                    sender.sendMessage(new TranslateAPI(this.getConfig().get("API_KEY").toString()).translateAuto(Lang.forSimilarShortString(args[0]),msg));
+                    sender.sendMessage(new TranslateAPI(this.getConfig().getString("API_KEY")).translateAuto(Lang.forSimilarShortString(args[0]),msg));
                 } catch (IOException e) {
                     sender.sendMessage(e.toString());
                 }

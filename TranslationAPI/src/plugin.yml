@@ -1,10 +1,10 @@
 name: TranslateAPI
 main: lion.translateapi.Main
-version: "0.1.0b"
+version: "0.1.2b"
 api: ["1.0.0"]
 
 author: _Lion
-description: Api for translate string
+description: Api for translation
 
 commands:
   translate:

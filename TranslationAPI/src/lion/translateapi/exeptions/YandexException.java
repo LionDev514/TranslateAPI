@@ -1,4 +1,4 @@
-package lion.translateapi.errors;
+package lion.translateapi.exeptions;
 
 import java.io.IOException;
 

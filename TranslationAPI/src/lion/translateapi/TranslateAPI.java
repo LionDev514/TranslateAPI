@@ -1,21 +1,17 @@
 package lion.translateapi;
-import java.lang.reflect.Array;
-import java.net.*;
-import java.io.*;
-import java.util.Arrays;
-import java.util.Scanner;
-
-import cn.nukkit.event.Listener;
-import cn.nukkit.plugin.PluginBase;
-import cn.nukkit.utils.TextFormat;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import lion.translateapi.errors.*;
+import lion.translateapi.exeptions.*;
 
 import javax.net.ssl.HttpsURLConnection;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.*;
+import java.util.Scanner;
 
-public class TranslateAPI extends PluginBase {
+public class TranslateAPI {
     String API_KEY;
     boolean enabled;
     TranslateAPI instance;
@@ -26,6 +22,17 @@ public class TranslateAPI extends PluginBase {
         instance=this;
     }
 
+    /**
+     * Translates the string for which the language already specified the language specified
+     *
+     * @param from
+     * @param to
+     * @param text
+     * @return
+     * @throws YandexException
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public String translate(Lang from, Lang to, String text)throws YandexException, MalformedURLException, IOException {
         if(getInstance().enabled!=true) {
             return text;
@@ -54,6 +61,17 @@ public class TranslateAPI extends PluginBase {
             }
         }
     }
+
+    /**
+     * Translates the string for which the language is obtained automatically in the language specified
+     *
+     * @param to
+     * @param text
+     * @return
+     * @throws YandexException
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public String translateAuto(Lang to,String text)throws YandexException, MalformedURLException, IOException{
         if(getInstance().enabled!=true) {
             return text;
@@ -82,11 +100,11 @@ public class TranslateAPI extends PluginBase {
             }
         }
     }
-    public JsonElement getJSONResponse(String url) throws MalformedURLException, IOException {
+    protected JsonElement getJSONResponse(String url) throws MalformedURLException, IOException {
         String s = this.getResponse(url);
         return (new JsonParser()).parse(s);
     }
-    private String convertStreamToString(InputStream is) {
+    protected String convertStreamToString(InputStream is) {
         Scanner s = new Scanner(is, "UTF-8");
         s.useDelimiter("\\A");
 
@@ -99,7 +117,7 @@ public class TranslateAPI extends PluginBase {
             return "";
         }
     }
-    private String urlEncode(String s) {
+    protected String urlEncode(String s) {
         String urlEncodedMsg;
         try {
             urlEncodedMsg = URLEncoder.encode(s, "UTF-8");
@@ -110,7 +128,7 @@ public class TranslateAPI extends PluginBase {
 
         return urlEncodedMsg.replace("%20", "+");
     }
-    private String getTranslateUrl(String langString, String toTranslate) {
+    protected String getTranslateUrl(String langString, String toTranslate) {
         StringBuilder base = new StringBuilder("https://translate.yandex.net/api/v1.5/tr.json/translate?key=");
         base.append(this.urlEncode(this.API_KEY));
         base.append("&lang=");
@@ -119,14 +137,11 @@ public class TranslateAPI extends PluginBase {
         base.append(this.urlEncode(toTranslate));
         return base.toString();
     }
-    private String getTranslateUrl(Lang from, Lang to, String toTranslate) {
+    protected String getTranslateUrl(Lang from, Lang to, String toTranslate) {
         return this.getTranslateUrl(Lang.getTranslateString(from, to), toTranslate);
     }
-    public String debugMsg(Object msg){
-        if((boolean)this.getConfig().get("debug")==true) {return msg.toString();}
-        return null;
-    }
-    public String getResponse(String url) throws MalformedURLException, IOException, YandexException {
+
+    protected String getResponse(String url) throws MalformedURLException, IOException, YandexException {
         URLConnection con = (new URL(url)).openConnection();
         con.setUseCaches(true);
         con.setConnectTimeout(10000);
@@ -154,9 +169,6 @@ public class TranslateAPI extends PluginBase {
         in2.close();
         return response1;
     }
-    private String toStr(Object obj){
-        return obj.toString();
-    }
         private void throwException(int code) throws YandexException {
             if(code == 401) {
                 throw new YandexInvalidKeyException();
@@ -176,6 +188,16 @@ public class TranslateAPI extends PluginBase {
                 throw new YandexUnsupportedLanguageException();
             }
         }
+
+    /**
+     * Get language of any string
+     * @param text
+     * @return
+     * @throws YandexUnsupportedLanguageException
+     * @throws YandexException
+     * @throws MalformedURLException
+     * @throws IOException
+     */
     public Lang getLang(String text) throws YandexUnsupportedLanguageException, YandexException, MalformedURLException, IOException {
         if(getInstance().enabled!=true) {
             return Lang.ENGLISH;
@@ -203,7 +225,7 @@ public class TranslateAPI extends PluginBase {
             }
         }
     }
-    private String getDetectUrl(String toTranslate) {
+    protected String getDetectUrl(String toTranslate) {
         StringBuilder base = new StringBuilder("https://translate.yandex.net/api/v1.5/tr.json/detect?key=");
         base.append(this.urlEncode(this.API_KEY));
         base.append("&text=");
@@ -212,7 +234,7 @@ public class TranslateAPI extends PluginBase {
     }
 
     /**
-     * Not use please :v
+     * get class instance
      * @return TranslateAPI
      */
     public TranslateAPI getInstance(){
