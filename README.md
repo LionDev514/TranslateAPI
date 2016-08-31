@@ -1,5 +1,6 @@
 # TranslateAPI
 for Nukkit :-)
+> Powered by Yandex.Translate, More Information [here](https://tech.yandex.com/translate/doc/dg/concepts/About-docpage/)
 
 ## How To
 
